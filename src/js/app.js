@@ -1,16 +1,14 @@
-import json from './parser';
-import read from './reader';
+import GameSavingLoader from './GameSavingLoader';
 import GameSaving from './gamesaving';
 
-export default class GameSavingLoader {
+const gameSaving1 = new GameSaving({"id":9,"created":1546300800,"userInfo":{"id":1,"name":"Hitman","level":10,"points":2000}})
+console.log(gameSaving1);
 
-  async load() {
-    try {
-      const response = await read();
-      const result = await json(response);
-      return new GameSaving (result);
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-}
+const saving = new GameSavingLoader.load();
+console.log(saving);
+const gameSaving2 = new GameSaving(saving);
+console.log(gameSaving2);
+
+
+// const gameSaving2 = new GameSaving(GameSavingLoader.load());
+// console.log(gameSaving2);
